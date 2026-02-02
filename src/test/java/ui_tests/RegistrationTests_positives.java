@@ -12,7 +12,7 @@ import pages.LoginPage;
 import java.util.Random;
 import static utils.UserFactory.*;
 
-public class RegistrationTests extends AppManager {
+public class RegistrationTests_positives extends AppManager {
     LoginPage loginPage;
 
     @BeforeMethod

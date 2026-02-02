@@ -20,4 +20,11 @@ public class HomePage extends BasePage{
     public void clickBtnLogin(){
         btnLogin.click();
     }
+
+    @FindBy(xpath = "//a[text()= 'REGISTRATION']")
+        WebElement btnRegistration;
+
+    public void clickBtnRegistration(){
+        btnRegistration.click();
+    }
 }

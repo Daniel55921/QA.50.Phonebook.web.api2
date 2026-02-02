@@ -9,7 +9,7 @@ import pages.HomePage;
 import pages.LoginPage;
 
 
-public class LoginTests extends AppManager {
+public class LoginTests_positives extends AppManager {
     @Test
     public void loginPositiveTest() {
         HomePage homePage = new HomePage(getDriver());
@@ -33,14 +33,4 @@ public class LoginTests extends AppManager {
         Assert.assertTrue(new ContactPage(getDriver()).isTextInBtnSignOutPresent("Sign Out"));
     }
 
-    @Test
-    public void loginNegativeTest_WrongEmail() {
-        User user = new User("cat12322mail", "Kit088877!!");
-        HomePage homePage = new HomePage(getDriver());
-        homePage.clickBtnLogin();
-        LoginPage loginPage = new LoginPage(getDriver());
-        loginPage.typeLoginRegistrationFormWithUser(user);
-        loginPage.clickBtnLoginForm();
-        Assert.assertEquals(loginPage.closeAlertReturnText(), "Wrong email or password");
-    }
 }
