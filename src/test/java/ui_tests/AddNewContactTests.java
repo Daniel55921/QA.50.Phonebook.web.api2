@@ -9,6 +9,7 @@ import pages.*;
 import utils.HeaderMenuItem;
 import static pages.BasePage.clickButtonHeader;
 import static utils.ContactFactory.*;
+import static utils.PropertiesReader.getProperty;
 
 public class AddNewContactTests extends AppManager {
     HomePage homePage;
@@ -18,11 +19,12 @@ public class AddNewContactTests extends AppManager {
     int countOfContacts;
 
     @BeforeMethod
-    public void login(){
+    public void login() {
         homePage = new HomePage(getDriver());
         loginPage = clickButtonHeader(HeaderMenuItem.LOGIN);
         loginPage.typeLoginRegistrationForm
-                ("cat12322@mail", "Kit088877!!");
+                (getProperty("base.properties", "login"),
+                        getProperty("base.properties","password"));
         loginPage.clickBtnLoginForm();
         contactPage = new ContactPage(getDriver());
         countOfContacts = contactPage.getCountOfContacts();
@@ -31,17 +33,24 @@ public class AddNewContactTests extends AppManager {
     }
 
     @Test
-    public void addNewContactPositiveTest(){
+    public void addNewContactPositiveTest() {
         addPage.typeContactForm(positiveContact());
         int countOfContactsAfterAdd = contactPage.getCountOfContacts();
-        Assert.assertEquals(countOfContactsAfterAdd, countOfContacts+1);
+        Assert.assertEquals(countOfContactsAfterAdd, countOfContacts + 1);
     }
 
     @Test
-    public void addNewContactPositiveTest_ClickLastContact(){
+    public void addNewContactPositiveTest_ClickLastContact() {
         Contact contact = positiveContact();
         addPage.typeContactForm(contact);
         //contactPage.clickLastContact();
         Assert.assertTrue(contactPage.isContactPresent(contact));
+    }
+
+    @Test
+    public void addNewContactPositiveTest_ScrollToLastContact() {
+        Contact contact = positiveContact();
+        addPage.typeContactForm(contact);
+        contactPage.scrollToLastContact();
     }
 }
