@@ -3,12 +3,17 @@ package ui_tests;
 import dto.User;
 import manager.AppManager;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.ContactPage;
 import pages.HomePage;
 import pages.LoginPage;
 import utils.RetryAnalyzer;
+import utils.TestNGListener;
+
 import static utils.PropertiesReader.*;
+
+@Listeners(TestNGListener.class)
 
 
 public class LoginTests_positives extends AppManager {

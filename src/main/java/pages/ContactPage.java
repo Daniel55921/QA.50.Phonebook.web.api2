@@ -8,7 +8,10 @@ import org.openqa.selenium.interactions.WheelInput;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class ContactPage extends BasePage {
@@ -66,7 +69,14 @@ WebElement divListContacts;
         lastContact.click();
     }
 
-    public int getCountOfContacts(){
+    public int getCountOfContacts() {
+        // Ждем появления хотя бы одного элемента, если мы ожидаем, что список не пуст
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(5))
+                    .until(ExpectedConditions.visibilityOfAllElements(contactsList));
+        } catch (Exception e) {
+            return 0; // Если через 5 сек ничего не появилось
+        }
         return contactsList.size();
     }
 

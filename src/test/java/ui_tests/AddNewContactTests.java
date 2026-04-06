@@ -9,6 +9,8 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.*;
 import utils.HeaderMenuItem;
+
+import static org.testng.Assert.assertEquals;
 import static pages.BasePage.clickButtonHeader;
 import static utils.ContactFactory.*;
 import static utils.PropertiesReader.getProperty;
@@ -47,7 +49,7 @@ public class AddNewContactTests extends AppManager {
     public void addNewContactPositiveTest_withDataProvider(Contact contact) {
         addPage.typeContactForm(contact);
         int countOfContactsAfterAdd = contactPage.getCountOfContacts();
-        Assert.assertEquals(countOfContactsAfterAdd, countOfContacts + 1);
+        assertEquals(countOfContactsAfterAdd, countOfContacts + 1);
     }
 
     @Test
