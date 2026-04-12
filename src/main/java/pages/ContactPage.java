@@ -32,6 +32,10 @@ public class ContactPage extends BasePage {
     WebElement lastContact;
     @FindBy(xpath = "//div[@class='contact-item-detailed_card__50dTS']")
     WebElement itemDetailCard;
+    @FindBy(xpath = "//button[text() = 'Remove']")
+    WebElement btnRemove;
+    @FindBy(xpath = "//div[@class='contact-page_leftdiv__yhyke']/div")
+    WebElement divListContacts;
 
 
     public String getTextInContact(){
@@ -49,8 +53,6 @@ public class ContactPage extends BasePage {
         return false;
     }
 
-@FindBy(xpath = "//div[@class='contact-page_leftdiv__yhyke']/div")
-WebElement divListContacts;
     public void scrollToLastContact(){
         Actions actions = new Actions(driver);
         //actions.scrollToElement(lastContact).perform();
@@ -70,12 +72,11 @@ WebElement divListContacts;
     }
 
     public int getCountOfContacts() {
-        // Ждем появления хотя бы одного элемента, если мы ожидаем, что список не пуст
         try {
             new WebDriverWait(driver, Duration.ofSeconds(5))
                     .until(ExpectedConditions.visibilityOfAllElements(contactsList));
         } catch (Exception e) {
-            return 0; // Если через 5 сек ничего не появилось
+            return 0;
         }
         return contactsList.size();
     }
@@ -92,4 +93,8 @@ WebElement divListContacts;
         return isTextInElementPresent(btnAdd, text);
     }
 
+    public void deleteFirstContact() {
+        contactsList.get(0).click();
+        btnRemove.click();
+    }
 }
