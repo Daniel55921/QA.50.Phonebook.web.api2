@@ -1,23 +1,21 @@
 package ui_tests;
 
 import manager.AppManager;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.BasePage;
 import pages.ContactPage;
 import pages.HomePage;
 import pages.LoginPage;
-import utils.HeaderMenuItem;
-import static utils.PropertiesReader.*;
+import utils.ContactFactory;
 
-import static utils.HeaderMenuItem.*;
+import static utils.HeaderMenuItem.LOGIN;
+import static utils.PropertiesReader.getProperty;
 
-public class DeleteContactTests extends AppManager {
+public class EditContactTests extends AppManager {
     HomePage homePage;
     LoginPage loginPage;
     ContactPage contactPage;
-    int countOfContacts;
 
     @BeforeMethod
     public void login(){
@@ -28,15 +26,11 @@ public class DeleteContactTests extends AppManager {
                         getProperty("base.properties", "password"));
         loginPage.clickBtnLoginForm();
         contactPage = new ContactPage(getDriver());
-        countOfContacts = contactPage.getCountOfContacts();
     }
 
     @Test
-    public void deleteFirstContactPositiveTest(){
-        int countBefore = contactPage.getCountOfContacts();
-        contactPage.deleteFirstContact();
-        contactPage.pause(5);
-        int countAfter = contactPage.getCountOfContacts();
-        Assert.assertEquals(countAfter, countBefore - 1);
+    public void editFirstContactPositiveTest(){
+        contactPage.typeEditForm(ContactFactory.positiveContact());
+
     }
 }

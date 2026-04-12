@@ -26,7 +26,7 @@ public class ContactPage extends BasePage {
     WebElement btnAdd;
     @FindBy(xpath = "//h1[contains(text(), 'No Contacts here!')]")
     WebElement contactPageMessage;
-    @FindBy(className = "contact-item_card_2SOIM")
+    @FindBy(className = "contact-item_card__2SOIM")
     List<WebElement> contactsList;
     @FindBy(xpath = "//div[@class='contact-item_card__2SOIM'][last()]")
     WebElement lastContact;
@@ -36,6 +36,23 @@ public class ContactPage extends BasePage {
     WebElement btnRemove;
     @FindBy(xpath = "//div[@class='contact-page_leftdiv__yhyke']/div")
     WebElement divListContacts;
+    @FindBy(xpath = "//button[text()='Edit']")
+    WebElement btnEdit;
+
+    @FindBy(xpath = "//div[@class='form_form__FOqHs']/input[1]")
+    WebElement inputName;
+    @FindBy(xpath = "//div[@class='form_form__FOqHs']/input[2]")
+    WebElement inputLastName;
+    @FindBy(xpath = "//div[@class='form_form__FOqHs']/input[3]")
+    WebElement inputPhone;
+    @FindBy(xpath = "//div[@class='form_form__FOqHs']/input[4]")
+    WebElement inputEmail;
+    @FindBy(xpath = "//div[@class='form_form__FOqHs']/input[5]")
+    WebElement inputAddress;
+    @FindBy(xpath = "//div[@class='form_form__FOqHs']/input[6]")
+    WebElement inputDescription;
+    @FindBy(xpath = "//button[text()='Save']")
+    WebElement btnSave;
 
 
     public String getTextInContact(){
@@ -96,5 +113,22 @@ public class ContactPage extends BasePage {
     public void deleteFirstContact() {
         contactsList.get(0).click();
         btnRemove.click();
+    }
+
+    public void typeEditForm(Contact contact){
+        contactsList.get(0).click();
+        btnEdit.click();
+        inputName.clear();
+        inputName.sendKeys(contact.getName());
+        inputLastName.clear();
+        inputLastName.sendKeys(contact.getLastName());
+        inputPhone.clear();
+        inputPhone.sendKeys(contact.getPhone());
+        inputEmail.clear();
+        inputEmail.sendKeys(contact.getEmail());
+        inputAddress.clear();
+        inputAddress.sendKeys(contact.getAddress());
+        pause(3);
+        btnSave.click();
     }
 }
