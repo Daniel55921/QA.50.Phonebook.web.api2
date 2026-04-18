@@ -1,0 +1,1 @@
+{"uuid":"84c3e50f-8f3e-4165-affe-cf0004f77b01","name":"manager.AppManager.setup","children":["c74ca2c0-d510-478e-aa4c-45c139482007"],"description":"","befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1776186371422,"stop":1776186372691}],"afters":[],"start":1776186371422,"stop":1776186372691}

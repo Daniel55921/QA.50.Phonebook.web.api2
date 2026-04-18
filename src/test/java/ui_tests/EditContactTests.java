@@ -1,8 +1,11 @@
 package ui_tests;
 
+import dto.Contact;
 import manager.AppManager;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pages.BasePage;
 import pages.ContactPage;
 import pages.HomePage;
@@ -13,6 +16,7 @@ import static utils.HeaderMenuItem.LOGIN;
 import static utils.PropertiesReader.getProperty;
 
 public class EditContactTests extends AppManager {
+    SoftAssert softAssert = new SoftAssert();
     HomePage homePage;
     LoginPage loginPage;
     ContactPage contactPage;
@@ -30,7 +34,24 @@ public class EditContactTests extends AppManager {
 
     @Test
     public void editFirstContactPositiveTest(){
-        contactPage.typeEditForm(ContactFactory.positiveContact());
+        Contact contact = ContactFactory.positiveContact();
+        contactPage.typeEditForm(contact);
+        contactPage.pause(3);
+        Assert.assertTrue(contactPage.isContactPresent(contact));
+    }
 
+    @Test
+    public void editFirstContactPositiveTest_WithCheckDataInCard(){
+        Contact contact = ContactFactory.positiveContact();
+        contactPage.typeEditForm(contact);
+        contactPage.pause(3);
+        String text = contactPage.getTextInContact();
+        softAssert.assertTrue(text.contains(contact.getName()),
+                "validate Name in DetailCard");
+        softAssert.assertTrue(text.contains(contact.getEmail()),
+                "validate Email in DetailCard");
+        softAssert.assertTrue(text.contains(contact.getPhone()),
+                "validate Phone in DetailCard");
+        softAssert.assertAll();
     }
 }
