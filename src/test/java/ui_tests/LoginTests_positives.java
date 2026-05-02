@@ -29,7 +29,7 @@ public class LoginTests_positives extends AppManager {
                 isTextInBtnAddPresent("ADD"));
     }
 
-    @Test
+    @Test(groups = {"smoke", "user"})
     public void loginPositiveTestWithUser() {
         User user = new User(getProperty("base.properties", "login"),
                 getProperty("base.properties","password"));

@@ -20,7 +20,7 @@ public class AppManager {
         return driver;
     }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setup(){
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -30,7 +30,7 @@ public class AppManager {
         //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
-    @AfterMethod(enabled = false)
+    @AfterMethod(enabled = true, alwaysRun = true)
     public void tearDown(){
         if(driver!= null)
             driver.quit();

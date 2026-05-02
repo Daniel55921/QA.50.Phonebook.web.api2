@@ -23,7 +23,7 @@ public class AddNewContactTests extends AppManager {
     AddPage addPage;
     int countOfContacts;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void login() {
         homePage = new HomePage(getDriver());
         loginPage = clickButtonHeader(HeaderMenuItem.LOGIN);
@@ -37,7 +37,7 @@ public class AddNewContactTests extends AppManager {
 
     }
 
-    @Test
+    @Test(groups = {"smoke", "contact"})
     public void addNewContactPositiveTest() {
         addPage.typeContactForm(positiveContact());
         int countOfContactsAfterAdd = contactPage.getCountOfContacts();

@@ -9,7 +9,7 @@ import pages.LoginPage;
 
 public class RegistrationTests_negatives extends AppManager {
 
-    @Test
+    @Test(groups = "negative")
     public void RegistrationNegativeTest_WrongEmailOrPassword() {
         User user = new User("kitkat44@mail.ru", "kit234568!");
         HomePage homePage = new HomePage(getDriver());
@@ -20,7 +20,7 @@ public class RegistrationTests_negatives extends AppManager {
         Assert.assertEquals(loginPage.closeAlertReturnText(), "Wrong email or password format");
     }
 
-    @Test
+    @Test(groups = "negative")
     public void RegistrationNegativeTest_UserAlreadyExists() {
         User user = new User("g@mail.ru", "Home123!");
         HomePage homePage = new HomePage(getDriver());
