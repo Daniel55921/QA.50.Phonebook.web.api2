@@ -82,7 +82,7 @@ public class RegistrationApiTests implements BaseApi {
         user.setPassword("wrong password");
         System.out.println(user);
         RequestBody requestBody = RequestBody
-                .create(GSON.toJson(user), TEXT);
+                .create(GSON.toJson(user), JSON);
         Request request = new Request.Builder()
                 .url(BASE_URL+REGISTRATION_URL)
                 .post(requestBody)
@@ -102,7 +102,7 @@ public class RegistrationApiTests implements BaseApi {
         user.setPassword("wrong password");
         System.out.println(user);
         RequestBody requestBody = RequestBody
-                .create(GSON.toJson(user), TEXT);
+                .create(GSON.toJson(user), JSON);
         Request request = new Request.Builder()
                 .url(BASE_URL2+REGISTRATION_URL)
                 .post(requestBody)
@@ -122,7 +122,7 @@ public class RegistrationApiTests implements BaseApi {
         user.setPassword("wrong password");
         System.out.println(user);
         RequestBody requestBody = RequestBody
-                .create(GSON.toJson(user), TEXT);
+                .create(GSON.toJson(user), JSON);
         Request request = new Request.Builder()
                 .url(BASE_URL+ "/v1/user/registration/usernamepassword/")
                 .post(requestBody)
@@ -142,7 +142,7 @@ public class RegistrationApiTests implements BaseApi {
         user.setPassword("wrong password");
         System.out.println(user);
         RequestBody requestBody = RequestBody
-                .create(GSON.toJson(user), TEXT);
+                .create(GSON.toJson(user), JSON);
         Request request = new Request.Builder()
                 .url(BASE_URL+ LOGIN_URL)
                 .post(requestBody)
