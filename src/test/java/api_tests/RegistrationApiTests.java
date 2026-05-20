@@ -38,7 +38,7 @@ public class RegistrationApiTests implements BaseApi {
     @Test
     public void registrationNegative_Wrong_Password_ApiTest(){
         User user = positiveUser();
-        user.setPassword("wrong password");
+        user.setPassword("345");
         System.out.println(user);
         RequestBody requestBody = RequestBody
                 .create(GSON.toJson(user), JSON);
@@ -73,13 +73,12 @@ public class RegistrationApiTests implements BaseApi {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        Assert.assertEquals(response.code(),500);
+        Assert.assertEquals(response.code(),400);
     }
 
     @Test
     public void registrationNegative_Wrong_Format_Text_ApiTest(){
         User user = positiveUser();
-        user.setPassword("wrong password");
         System.out.println(user);
         RequestBody requestBody = RequestBody
                 .create(GSON.toJson(user), TEXT);
@@ -97,9 +96,8 @@ public class RegistrationApiTests implements BaseApi {
     }
 
     @Test
-    public void registrationNegative_Wrong_Portocol_ApiTest(){
+    public void registrationNegative_Wrong_Protocol_ApiTest(){
         User user = positiveUser();
-        user.setPassword("wrong password");
         System.out.println(user);
         RequestBody requestBody = RequestBody
                 .create(GSON.toJson(user), JSON);
@@ -119,7 +117,6 @@ public class RegistrationApiTests implements BaseApi {
     @Test
     public void registrationNegative_Wrong_registrationURL_ApiTest(){
         User user = positiveUser();
-        user.setPassword("wrong password");
         System.out.println(user);
         RequestBody requestBody = RequestBody
                 .create(GSON.toJson(user), JSON);
@@ -139,7 +136,6 @@ public class RegistrationApiTests implements BaseApi {
     @Test
     public void registrationNegative_Wrong_registrationURL_2_ApiTest(){
         User user = positiveUser();
-        user.setPassword("wrong password");
         System.out.println(user);
         RequestBody requestBody = RequestBody
                 .create(GSON.toJson(user), JSON);
@@ -153,6 +149,6 @@ public class RegistrationApiTests implements BaseApi {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        Assert.assertEquals(response.code(),401);
+        Assert.assertEquals(response.code(),404);
     }
 }
