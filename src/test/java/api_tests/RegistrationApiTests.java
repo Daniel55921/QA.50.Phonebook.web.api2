@@ -82,7 +82,7 @@ public class RegistrationApiTests implements BaseApi {
         user.setPassword("wrong password");
         System.out.println(user);
         RequestBody requestBody = RequestBody
-                .create(GSON.toJson(user), JSON);
+                .create(GSON.toJson(user), TEXT);
         Request request = new Request.Builder()
                 .url(BASE_URL+REGISTRATION_URL)
                 .post(requestBody)
