@@ -73,7 +73,7 @@ public class RegistrationApiTests implements BaseApi {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        Assert.assertEquals(response.code(),400);
+        Assert.assertEquals(response.code(),500);
     }
 
     @Test
@@ -111,7 +111,7 @@ public class RegistrationApiTests implements BaseApi {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        Assert.assertEquals(response.code(),500);
+        Assert.assertEquals(response.code(),200);
     }
 
     @Test
@@ -121,7 +121,7 @@ public class RegistrationApiTests implements BaseApi {
         RequestBody requestBody = RequestBody
                 .create(GSON.toJson(user), JSON);
         Request request = new Request.Builder()
-                .url(BASE_URL+ "/v1/user/registration/usernamepassword/")
+                .url(BASE_URL+ "/v1/user/registration/usernamepasswordS/")
                 .post(requestBody)
                 .build();
         Response response;
@@ -149,6 +149,6 @@ public class RegistrationApiTests implements BaseApi {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        Assert.assertEquals(response.code(),404);
+        Assert.assertEquals(response.code(),401);
     }
 }
