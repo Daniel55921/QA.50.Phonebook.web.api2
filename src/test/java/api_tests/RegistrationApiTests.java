@@ -130,7 +130,7 @@ public class RegistrationApiTests implements BaseApi {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        Assert.assertEquals(response.code(),404);
+        Assert.assertEquals(response.code(),403);
     }
 
     @Test
